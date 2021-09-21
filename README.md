@@ -2,26 +2,53 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.3.
 
-## Development server
+## SUJET
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+![alt text](https://github.com/Polyrayan/codingameCATS-Q25/blob/master/part1.png?raw=true)
 
-## Code scaffolding
+![alt text](https://github.com/Polyrayan/codingameCATS-Q25/blob/master/part2.png?raw=true)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Code de départ 
+```typescript
+// Angular 8.x code
+import { Component, NgModule, Input, Output } from '@angular/core';
+ 
+ 
+@Component({
+  selector:'counter-component',
+  template: `
+     <input id="intervalInput"/>
+     <button id="intervalSetButton">Set interval</button>
+  `
+})
+export class CounterComponent {
 
-## Build
+}
+ 
+// #region Preview
+@Component({
+  selector:'display-component',
+  template: `
+    <counter-component [message]="'Hello world'" (tick)=counterTick($event)></counter-component>
+    <div>{{message}} {{counter}}</div>
+  `
+})
+export class DisplayComponent {
+  public counter: number = 0;
+  public message: string;
+ 
+  public counterTick(message: string): void {
+    this.message = message;
+    this.counter++;
+  }
+}
+ 
+@Component({
+    template: `<display-component></display-component>`
+})
+export class PreviewComponent { }
+// #endregion Preview
+ 
+// #region Module declaration - Do not Change
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```
